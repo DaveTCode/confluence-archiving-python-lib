@@ -27,8 +27,12 @@ class ContentStatus:
         if 'isHomePage' in json:
             self.is_home_page = json['isHomePage']  # type: bool
 
-        self.last_updated = ContentStatusDate(json['lastUpdated'])  # type: ContentStatusDate
-        self.last_viewed = ContentStatusDate(json['lastViewed'])  # type: ContentStatusDate
+        if 'lastUpdated' in json:
+            self.last_updated = ContentStatusDate(json['lastUpdated'])  # type: ContentStatusDate
+
+        if 'lastViewed' in json:
+            self.last_viewed = ContentStatusDate(json['lastViewed'])  # type: ContentStatusDate
+
         self.status_code = json['status']['code']
         self.status_summary = json['status']['summary']
         self.status_description = json['status']['description']

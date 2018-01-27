@@ -15,7 +15,7 @@ except ImportError:
 setup(
     name='confluence-archiving',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    version='0.2.5',
+    version='0.2.8',
     description='A simple wrapper around the Confluence archiving plugin by Midoris REST API.',
     long_description=long_description,
     author='David Tyler',
