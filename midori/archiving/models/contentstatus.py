@@ -14,10 +14,19 @@ class ContentStatus:
 
     def __init__(self, json):  # type: (Dict[str, Any]) -> None
         self.id = json['id']  # type: int
-        self.title = json['title']  # type: str
-        self.url = json['url']  # type: str
-        self.has_children = json['hasChildren']  # type: bool
-        self.is_home_page = json['isHomePage']  # type: bool
+
+        if 'title' in json:
+            self.title = json['title']  # type: str
+
+        if 'url' in json:
+            self.url = json['url']  # type: str
+
+        if 'hasChildren' in json:
+            self.has_children = json['hasChildren']  # type: bool
+
+        if 'isHomePage' in json:
+            self.is_home_page = json['isHomePage']  # type: bool
+
         self.last_updated = ContentStatusDate(json['lastUpdated'])  # type: ContentStatusDate
         self.last_viewed = ContentStatusDate(json['lastViewed'])  # type: ContentStatusDate
         self.status_code = json['status']['code']
