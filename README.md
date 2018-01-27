@@ -16,7 +16,10 @@ pip install confluence-archiving
 ## Usage
 
 ```python
-TODO
+from midori.archiving.client import ArchivingClient
+with ArchivingClient('http://localhost:8080/confluence', ('user', 'pass')) as client:
+    content_status = client.get_page_content_status(1000)
+
 ```
 
 ## Development and Deployment

@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
 
 
-class Confluence:
+class ArchivingClient:
     """
     External interface into this library, all calls should be made through
     an instance of this class.
