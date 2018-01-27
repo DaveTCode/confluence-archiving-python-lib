@@ -1,0 +1,25 @@
+language: python
+sudo: false
+addons:
+  apt_packages:
+  - pandoc
+python:
+- '3.5'
+- '3.6'
+install:
+- python setup.py install
+- pip install pycodestyle mypy pypandoc typing
+script:
+- pycodestyle --first midori
+- mypy --py2 midori
+- python setup.py test --addopts "--cov midori tests"
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: davetcode
+  password:
+    secure: nh6PfoWFOyPyMgSalgUIse8NncCjXjDplFfn5JsC/7G6iXtOJETYUJSTZCTxYr1Ta4MAjqx3+gKtkA8yTyeWvdWf7pW4WyzDvgupVwlS1L09lQjwG0gdjn0+QDdrRuJ11ugOU1UOhXDfiVBWo35DN1xbF6p0NqCjS8SLTTq8mHDKIjM93nf7I8TG4yKygeM5ixyPL0PX/T9oiH1Vak+MoXDRezu1XX4OtS13qZc9ZV/kQQVgmQX81d+Kz+u55N8CsIUI+Q8OFo91IAKrL8wdssBZ9+fHNcq1ZBlmKSDF6KuDbdmF3VzOM7AMsmjhsGHc0jy9XRd7cp1AaTSMSIj/PmDBdNqfZxO9MMby97v574ft0cmaUHAjSA6EvgtCWgaIXobfXFldp7fATnWmh0hSywJ0Rk0B7ThvCy6kWdL4msWZ5ErAZopfm84VaVN/col/wOXuLRW+VuW4yluPvV510FdJRgBVcJZvcFUP+pQouyDMj618h2IF5vSa+kIxeIMubLxsHydLHrNMoPeV4bwVF0BuW4a4bvmNgXCRT6sM8jV/PFYSVDIPnh3ivXMspJpSl5baZhDbUsJjX+8+QsQrC21mXDIqqbeDTJsQiinby8ihnfpze7U4Ks0hGuXrsjppCmdwy+mW7S45LfRsk14ZTpU3JuH+bpqBKHscH5fPVt0=
+  on:
+    tags: true
+    repo: DaveTCode/confluence-archiving-python-lib
+    condition: "$TRAVIS_PYTHON_VERSION == 3.6 && $TRAVIS_TAG =~ ^[0-9]+[.][0-9]+[.][0-9]+(rc[0-9]+|[.]dev[0-9]+)?$"
